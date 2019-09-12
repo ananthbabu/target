@@ -13,10 +13,10 @@ public class MyRetailException extends Exception {
 	public MyRetailException() {
 	}
 
-	public MyRetailException(int errorCode,String errorMessage) {
+	public MyRetailException(int errorCode, String errorMessage) {
 		super(errorMessage);
 		this.errorMessage = errorMessage;
-		this.errorCode= errorCode;
+		this.errorCode = errorCode;
 	}
 
 	public String getErrorMessage() {

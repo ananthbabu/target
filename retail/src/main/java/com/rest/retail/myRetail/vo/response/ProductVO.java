@@ -2,16 +2,18 @@ package com.rest.retail.myRetail.vo.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-@JsonIgnoreProperties(ignoreUnknown=true)
+
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProductVO {
 
-	@JsonProperty(value="id")
+	@JsonProperty(value = "id")
 	String productId;
-	
-	@JsonProperty(value="name")
+
+	@JsonProperty(value = "name")
 	String name;
-	
-	@JsonProperty(value="current_price")
+
+	@JsonProperty(value = "current_price")
 	CurrentPriceVO currentprice;
 
 	public String getProductId() {
@@ -42,5 +44,5 @@ public class ProductVO {
 	public String toString() {
 		return "ProductResponse [productId=" + productId + ", name=" + name + ", currentprice=" + currentprice + "]";
 	}
-	
+
 }

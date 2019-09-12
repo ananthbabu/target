@@ -23,7 +23,7 @@ import com.rest.retail.myRetail.vo.response.ProductVO;
 @Service
 public class ProductService {
 
-	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	ProductRepository productRepository;

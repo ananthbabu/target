@@ -12,7 +12,7 @@ import com.rest.retail.myRetail.vo.response.ProductVO;
 public class ProductHelper {
 
 	/**
-	 * 
+	 * Generates product response and set the productid and name
 	 */
 	public ProductHelper() {
 		// TODO Auto-generated constructor stub
@@ -20,18 +20,16 @@ public class ProductHelper {
 
 	public ProductVO generateProductResponse(Product product, String productName) throws MyRetailException {
 
-
 		ProductVO prodResponse = new ProductVO();
-		CurrentPriceVO currentPriceResponse= new CurrentPriceVO();
-		try{
+		CurrentPriceVO currentPriceResponse = new CurrentPriceVO();
+		try {
 			currentPriceResponse.setCurrencyCode(product.getCurrentPrice().getCurrencyCode());
 			currentPriceResponse.setValue(product.getCurrentPrice().getValue());
 
 			prodResponse.setProductId(product.getProductId());
 			prodResponse.setCurrentprice(currentPriceResponse);
 			prodResponse.setName(productName);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			throw new MyRetailException();
 		}
 		return prodResponse;
@@ -46,7 +44,5 @@ public class ProductHelper {
 		product.setCurrentPrice(currentPrice);
 		return product;
 	}
-
-
 
 }

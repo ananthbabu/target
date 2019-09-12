@@ -30,7 +30,7 @@ import com.rest.retail.myRetail.vo.response.ProductVO;
 @RestController
 public class ProductController {
 
-	protected Logger logger = LoggerFactory.getLogger(this.getClass());
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	ProductService productService;

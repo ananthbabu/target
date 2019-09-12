@@ -24,10 +24,9 @@ public class SwaggerConfig {
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
-				.select()
-				.apis(RequestHandlerSelectors.any())
-				.apis(RequestHandlerSelectors.basePackage("com.rest.retail.myRetail.controller"))
-				.paths(PathSelectors.any()).build();
+					.select().apis(RequestHandlerSelectors.any())
+					.apis(RequestHandlerSelectors.basePackage("com.rest.retail.myRetail.controller"))
+					.paths(PathSelectors.any()).build();
 	}
 
 }

@@ -1,10 +1,9 @@
 package com.rest.retail.myRetail.entity;
 
-
 public class CurrentPrice {
-	
+
 	private Double value;
-	
+
 	private String currencyCode;
 
 	public Double getValue() {
@@ -35,7 +34,5 @@ public class CurrentPrice {
 	public CurrentPrice() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

@@ -3,7 +3,6 @@
  */
 package com.rest.retail.myRetail.entity;
 
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,15 +10,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @author ananth
  *
  */
-@Document(collection="productprice")
+@Document(collection = "productprice")
 public class Product {
-	
+
 	public Product() {
 	}
 
 	@Id
 	private String productId;
-	
+
 	private CurrentPrice currentPrice;
 
 	public Product(String productId, CurrentPrice currentPrice) {
@@ -41,6 +40,6 @@ public class Product {
 
 	public void setCurrentPrice(CurrentPrice currentPrice) {
 		this.currentPrice = currentPrice;
-	}	
+	}
 
 }
