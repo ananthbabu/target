@@ -20,6 +20,7 @@
 # Testing
 	Launch http://localhost:8081/myRetail/swagger-ui.html 
 	NOTE: Change the port if you are modifying application.properties
+	http://localhost:8081/myRetail/actuator/info
 	
 # Sample input
 •	Responds to an HTTP GET request at /products/{id} and delivers product data as JSON (where {id} will be a number. 
@@ -38,4 +39,5 @@
 
 # PCF deployment
 https://myretail.cfapps.io/myRetail/swagger-ui.html
+
 
