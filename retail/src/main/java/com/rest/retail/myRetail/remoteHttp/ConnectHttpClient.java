@@ -23,7 +23,7 @@ import com.rest.retail.myRetail.exception.MyRetailException;
 @Component
 public class ConnectHttpClient {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectHttpClient.class);
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -40,7 +40,7 @@ public class ConnectHttpClient {
 	public String getProductNameByRemoteCall(String productId) throws MyRetailException {
 
 		try {
-			logger.info("Inside ConnectHttpClient().getProductNameByRemoteCall");
+			LOGGER.info("Inside ConnectHttpClient().getProductNameByRemoteCall");
 			UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(apiEndpointURL + product_URI + productId)
 					.queryParam("excludes",
 							"taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics");
@@ -50,7 +50,7 @@ public class ConnectHttpClient {
 
 			if (jsonResponse != null) {
 				JSONObject jsonObject = new JSONObject(jsonResponse);
-				logger.debug("JSON Response from Remote Client  :" + jsonResponse.toString());
+				LOGGER.debug("JSON Response from Remote Client  :" + jsonResponse.toString());
 
 				if (jsonObject.getJSONObject("product").getJSONObject("item")
 						.getJSONObject("product_description") != null) {
@@ -58,16 +58,17 @@ public class ConnectHttpClient {
 							.getJSONObject("product_description");
 					productName = productDescription.getString("title");
 				} else {
-					logger.debug("Product title JSON value Unavailable in Product API");
+					LOGGER.debug("Product title JSON value Unavailable in Product API");
 					throw new MyRetailException(HttpStatus.NO_CONTENT.value(),
 							"The title does not exists for the product");
 				}
 			}
 		} catch (RestClientException e) {
-			logger.debug("Product API unavailable  :" + apiEndpointURL + product_URI + productId);
+			LOGGER.debug("Product API unavailable  :" + apiEndpointURL + product_URI + productId);
 			throw new MyRetailException(HttpStatus.NOT_FOUND.value(),
 					"Product id: " + productId + " unavailable in Remote API ");
 		}
+	
 		return productName;
 	}
 

@@ -30,27 +30,27 @@ import com.rest.retail.myRetail.vo.response.ProductVO;
 @RestController
 public class ProductController {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
 	@Autowired
 	ProductService productService;
 
 	@RequestMapping(value = "/{id}",method=RequestMethod.GET,produces=MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ProductVO> getProductById(@PathVariable("id") String productId) throws MyRetailException {
-		logger.info("Inside getProductById :  " + productId);
+		LOGGER.info("Inside getProductById :  " + productId);
 
 		ProductVO productResponse= new ProductVO();
 		productResponse = productService.getProductById(productId);
 
-		logger.debug(" product Response " + productResponse);
+		LOGGER.debug(" product Response " + productResponse);
 		return new ResponseEntity<ProductVO>(productResponse, HttpStatus.OK);
 	}
 
 	@ExceptionHandler(MyRetailException.class)
 	public ResponseEntity<ProductResponse> exceptionHandler(MyRetailException ex) {
-		logger.debug("Inside Exception  " + ex);
+		LOGGER.debug("Inside Exception  " + ex);
 		ProductResponse error = new ProductResponse(ex.getErrorCode(),ex.getMessage());
-		logger.debug(ex.getErrorMessage(),ex);
+		LOGGER.debug(ex.getErrorMessage(),ex);
 		return new ResponseEntity<ProductResponse>(error,HttpStatus.valueOf(ex.getErrorCode()));
 	}
 
@@ -63,6 +63,5 @@ public class ProductController {
 		productService.updateProductById(product);
 		return new ResponseEntity<ProductResponse>(HttpStatus.OK);
 	}
-
-
+	
 }

@@ -23,8 +23,8 @@ import com.rest.retail.myRetail.vo.response.ProductVO;
 @Service
 public class ProductService {
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
+	
 	@Autowired
 	ProductRepository productRepository;
 
@@ -39,7 +39,7 @@ public class ProductService {
 	}
 
 	public ProductVO getProductById(String productId) throws MyRetailException {
-		logger.info("Inside ProductService().getProductById");
+		LOGGER.info("Inside ProductService().getProductById");
 
 		Product product = new Product();
 		String productName = null;
@@ -47,7 +47,7 @@ public class ProductService {
 			// retrive from MongoDB
 			product = productRepository.findProductByproductId(productId);
 			if (product == null) {
-				logger.debug("Product Not Found Exception while fetching product data from DB ");
+				LOGGER.debug("Product Not Found Exception while fetching product data from DB ");
 				throw new MyRetailException(HttpStatus.NOT_FOUND.value(), "Product not found in DB");
 			}
 
@@ -65,7 +65,7 @@ public class ProductService {
 			Product product = helperObject.getProductDomainObject(productVO);
 			productRepository.save(product);
 		} catch (Exception exception) {
-			logger.debug("Product Not Found Exception while doing update " + exception);
+			LOGGER.debug("Product Not Found Exception while doing update " + exception);
 			throw new MyRetailException(HttpStatus.NOT_FOUND.value(), "Product not found while update");
 		}
 	}

@@ -29,10 +29,11 @@ import com.rest.retail.myRetail.vo.response.CurrentPriceVO;
 import com.rest.retail.myRetail.vo.response.ProductVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(value = ProductController.class, secure = false)
+@WebMvcTest(value = ProductController.class, secure = true)
 public class ProductControllerTest {
 
- Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProductControllerTest.class);
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -70,13 +71,12 @@ public class ProductControllerTest {
 	@Test
 	public void getProductByWrongIdTest() throws Exception{
 		
-		//Mockito.when(productService.getProductById(Mockito.anyString())).thenThrow(new MyRetailException());
 		try {
 			String actual = mockMvc.perform(get("/products/123456")).andReturn().getResponse().getContentAsString();
 			assertEquals("", actual);;
 		
 		} catch (MyRetailException	 e) {
-			logger.debug("Product not found Exception test sucess.");
+			LOGGER.debug("Product not found Exception test sucess.");
 		}
 		
 	}
